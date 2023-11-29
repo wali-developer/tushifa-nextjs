@@ -1,0 +1,629 @@
+body[data-theme-version="dark"] {
+    /************************** 
+    * Global
+    ***************************/
+    background-color: #232b3e !important;
+    color: #96a2b4 !important;
+
+    .text-dark-gray {
+        color: #a5abb1;
+    }
+
+    .page-titles {
+        p {
+            color: #828690;
+        }
+
+        .welcome-text {
+            h4 {
+                color: #a5abb1 !important;
+            }
+        }
+    }
+
+    .check span {
+        color: #7366ff;
+        opacity: 1;
+    }
+    .tbl-delet {
+        color: #ff5200;
+        opacity: 1;
+    }
+
+    .tbl-edit {
+        color: #008cd3;
+        opacity: 1;
+    }
+
+    .fa-user {
+        color: #00a65a;
+        opacity: 1;
+    }
+
+    .tbl-eye {
+        color: #00a65a;
+        opacity: 1;
+    }
+
+    .tbl-print {
+        color: #dd4b39;
+        opacity: 1;
+    }
+
+    .breadcrumb {
+        .breadcrumb-item {
+            &.active {
+                a {
+                    color: #a5abb1;
+                }
+            }
+        }
+    }
+
+    .rounded-circle {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .content-body {
+        background-color: #232b3e;
+    }
+    /************************** 
+    * Widget
+    ***************************/
+
+    .widget-2 {
+        .list-group {
+            .list-group-item {
+                background-color: #1a202e;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+                .media-body {
+                    h4 {
+                        color: #96a2b4;
+                    }
+
+                    span {
+                        color: #96a2b4;
+                    }
+                }
+            }
+        }
+    }
+
+    .widget-3 {
+        .form-input {
+            background-color: transparent;
+            border: 1px solid #96a2b4;
+            label {
+                span {
+                    color: #96a2b4 !important;
+                }
+            }
+        }
+    }
+
+    /************************** 
+    * Card
+    ***************************/
+    .card {
+        background-color: #1a202e;
+        .card-header {
+            border-color: rgba(255, 255, 255, 0.1);
+
+            .card-title {
+                color: #96a2b4;
+            }
+
+            .subtitle {
+                color: #a5abb1;
+            }
+        }
+    }
+
+    .col-form-label {
+        color: #96a2b4;
+    }
+
+    /************************** 
+    * Card Gradient
+    ***************************/
+    .bg-card1,
+    .bg-card2,
+    .bg-card3,
+    .bg-card4 {
+        color: #ffffff;
+    }
+    .bg-card1 {
+        background: linear-gradient(to left, #3a7bd5, #3a6073) !important;
+    }
+
+    .bg-card2 {
+        background: linear-gradient(to right, #c33764, #1d2671) !important;
+    }
+
+    .bg-card3 {
+        background: linear-gradient(to left, #134e5e, #71b280) !important;
+    }
+
+    .bg-card4 {
+        background: linear-gradient(to left, #d38312, #a83279) !important;
+    }
+
+    /************************** 
+    * Widget
+    ***************************/
+
+    .timeline {
+        .timeline-panel {
+            border-bottom: 1px solid #96a2b4;
+        }
+    }
+
+    .widget-4 {
+        border-color: #96a2b4;
+        h4 {
+            color: #96a2b4 !important;
+        }
+    }
+
+    .widget-progress {
+        li {
+            h4 {
+                color: #96a2b4;
+            }
+        }
+    }
+
+    .widget-timline {
+        li {
+            h4 {
+                color: #96a2b4;
+            }
+        }
+    }
+
+    /************************** 
+    * Form
+    ***************************/
+
+    .form-control {
+        border-color: #96a2b4;
+        color: #96a2b4 !important;
+        background-color: transparent !important;
+    }
+
+    .input-group-text {
+        background: transparent !important;
+        border-color: #96a2b4;
+        color: #96a2b4 !important;
+    }
+
+    /************************** 
+    * DropDown
+    ***************************/
+    .dropdown-menu {
+        background-color: #1a202e;
+        border-color: #292a2a;
+        box-shadow: none !important;
+
+        > a {
+            border-top: 1px solid #232a31;
+
+            span {
+                color: #96a2b4;
+            }
+
+            &:hover {
+                background-color: #141820;
+
+                span {
+                    color: #96a2b4;
+                }
+            }
+        }
+    }
+
+    .btn-group-style-1 {
+        .dropdown-menu {
+            .form-content {
+                a {
+                    border-top: 1px solid #232a31;
+
+                    span {
+                        color: #96a2b4;
+                    }
+
+                    &:hover {
+                        background-color: #141820;
+
+                        span {
+                            color: #96a2b4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dropdown .dropdown-menu li .dropdown-item:focus,
+    .dropdown .dropdown-menu li .dropdown-item:hover {
+        color: #96a2b4;
+        background-color: #141820;
+    }
+
+    .dropdown .dropdown-menu li .dropdown-item {
+        color: #96a2b4;
+        border-top: 1px solid #96a2b4;
+    }
+
+    /************************** 
+    * Modal
+    ***************************/
+
+    .modal-content {
+        background-color: #1a202e !important;
+        .modal-header {
+            border-color: #96a2b4;
+
+            .modal-title {
+                display: flex;
+                align-items: center;
+                color: #96a2b4;
+            }
+        }
+
+        .modal-footer {
+            border-color: #96a2b4;
+        }
+    }
+    /************************** 
+    * DateRangePiker
+    ***************************/
+    .daterangepicker {
+        background-color: #1a202e;
+        border-color: #292a2a;
+
+        .calendar-table {
+            border: none;
+            border-radius: 4px;
+            background-color: #11141b;
+        }
+
+        .drp-buttons {
+            border-top: 1px solid #96a2b4;
+        }
+
+        .cancelBtn {
+            color: #96a2b4 !important;
+        }
+
+        &:after {
+            top: -6px;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #96a2b4;
+            border-left: 6px solid transparent;
+        }
+    }
+
+    .daterangepicker td.off,
+    .daterangepicker td.off.in-range,
+    .daterangepicker td.off.start-date,
+    .daterangepicker td.off.end-date {
+        background-color: #1a202e !important;
+    }
+
+    .daterangepicker td.available:hover,
+    .daterangepicker th.available:hover {
+        background-color: transparent;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+        color: #96a2b4;
+    }
+
+    .daterangepicker .drp-calendar.left .calendar-table {
+        border: none;
+    }
+
+    .daterangepicker {
+        .calendar-table {
+            th,
+            td {
+                border-radius: 0;
+            }
+        }
+    }
+
+    .daterangepicker .calendar-table .next span,
+    .daterangepicker .calendar-table .prev span {
+        border-color: #96a2b4;
+        border-width: 0 2px 2px 0;
+    }
+
+    /************************** 
+    * Calender
+    ***************************/
+    .draggable-events {
+        .box-title {
+            color: #96a2b4;
+        }
+    }
+
+    .create-event {
+        .event-header {
+            .box-title {
+                color: #96a2b4;
+            }
+        }
+    }
+
+    #calendar {
+        .fc-center {
+            h2 {
+                color: #96a2b4;
+            }
+        }
+
+        button {
+            border-color: #96a2b4 !important;
+            color: #96a2b4 !important;
+        }
+
+        .fc-button-group button {
+            border-color: #96a2b4 !important;
+        }
+
+        .fc-state-default {
+            color: #96a2b4 !important;
+        }
+
+        .fc-today-button {
+            border-color: #96a2b4 !important;
+            color: #96a2b4 !important;
+        }
+    }
+
+    .fc-unthemed .fc-content,
+    .fc-unthemed .fc-divider,
+    .fc-unthemed .fc-list-heading td,
+    .fc-unthemed .fc-list-view,
+    .fc-unthemed .fc-popover,
+    .fc-unthemed .fc-row,
+    .fc-unthemed tbody,
+    .fc-unthemed td,
+    .fc-unthemed th,
+    .fc-unthemed thead {
+        border-color: #96a2b4;
+    }
+
+    .fc-unthemed td.fc-today {
+        background: transparent;
+    }
+
+    /************************** 
+    * Table
+    ***************************/
+
+    table {
+        thead {
+            tr {
+                border-color: #2a3040 !important;
+                background-color: #2a3040;
+                color: #96a2b4;
+
+                th {
+                    color: #abaaaa;
+                }
+            }
+        }
+
+        td,
+        th {
+            color: #96a2b4;
+        }
+    }
+
+    table.dataTable.row-border tbody th,
+    table.dataTable.row-border tbody td,
+    table.dataTable.display tbody th,
+    table.dataTable.display tbody td {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    div.dataTables_wrapper {
+        div.dataTables_length {
+            color: #96a2b4;
+
+            select {
+                background: transparent;
+                border-color: rgba(255, 255, 255, 0.1);
+                color: #96a2b4;
+            }
+        }
+
+        div.dataTables_filter {
+            input {
+                background: #2a3040;
+                border-color: rgba(255, 255, 255, 0.1) !important;
+            }
+        }
+
+        .dataTables_info {
+            color: #96a2b4;
+        }
+
+        .dataTables_paginate {
+            .paginate_button {
+                color: #96a2b4;
+
+                &.current {
+                    color: #96a2b4 !important;
+                    background: transparent;
+                }
+            }
+        }
+
+        .dataTables_paginate .paginate_button.current:hover,
+        .dataTables_paginate .paginate_button.previous:hover,
+        .dataTables_paginate .paginate_button.next:hover {
+            background: transparent;
+        }
+
+        .dataTables_paginate .paginate_button:focus,
+        .dataTables_paginate .paginate_button:active,
+        .dataTables_paginate .paginate_button:hover {
+            background: transparent;
+            border: 0 !important;
+            box-shadow: none;
+        }
+    }
+
+    /************************** 
+    * Pages
+    ***************************/
+
+    .login-tabib {
+        .login-main {
+            background-color: #1a202e;
+
+            .theme-form {
+                h4 {
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .auth-404 {
+        h4 {
+            color: #ffffff;
+        }
+        .page-content {
+            h1,
+            .text-muted {
+                color: #ffffff !important;
+            }
+        }
+    }
+
+    .checkbox {
+        label {
+            &::before {
+                border-color: #96a2b4;
+                background-color: transparent;
+            }
+        }
+    }
+
+    /************************** 
+    * Scrollbar
+    ***************************/
+
+    .left-panel::-webkit-scrollbar-thumb,
+    .widget-media::-webkit-scrollbar-thumb {
+        background-color: #aaa;
+        border: 1px solid #aaa;
+    }
+
+    .left-panel::-webkit-scrollbar-track,
+    .widget-media::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /************************** 
+    * Placeholder
+    ***************************/
+
+    ::-webkit-input-placeholder {
+        color: #96a2b4 !important;
+    }
+
+    ::-moz-placeholder {
+        color: #96a2b4 !important;
+    }
+
+    :-ms-input-placeholder {
+        color: #96a2b4 !important;
+    }
+
+    :-moz-placeholder {
+        color: #96a2b4 !important;
+    }
+    /************************** 
+    * Doctor list
+    ***************************/
+
+    .doctor-info-details {
+        h2 {
+            color: #ffffff !important;
+        }
+
+        p {
+            color: #96a2b4 !important;
+        }
+
+        .text-gray {
+            color: #96a2b4 !important;
+        }
+    }
+
+    .doctor-info-content {
+        .nav-tabs {
+            background-color: #1a202e;
+            border: none;
+
+            .nav-item {
+                .nav-link {
+                    color: #96a2b4;
+
+                    &.active {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    .list-doctors {
+        h4 {
+            color: #96a2b4 !important;
+        }
+    }
+
+    .star-review i.text-gray {
+        color: #96a2b4;
+    }
+
+    /************************** 
+    * Doctor list
+    ***************************/
+
+    .in-demo-panel {
+        background-color: #232b3e !important;
+        .demo-panel {
+            background-color: #232b3e !important;
+
+            .setting-panel-header {
+                padding: 20px;
+                color: #ffffff;
+                border: 1px solid #1a202e;
+                background-color: #1a202e;
+            }
+            .select-Layout {
+                h6 {
+                    color: #96a2b4;
+                    margin-bottom: 10px;
+                }
+
+                .items-panel {
+                    border-bottom: 1px solid #374053 !important;
+                    background-color: #1a202e;
+                }
+            }
+        }
+    }
+}
+
+.auth[data-theme-version="dark"] {
+    background-color: transparent !important;
+}

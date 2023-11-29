@@ -1,0 +1,28 @@
+@import "header/header";
+@import "sidebar/sidebar";
+@import "pages/pages";
+@import "footer/footer";
+@import "version-dark/main";
+@import "rtl/rtl";
+
+
+// 
+[data-topbar="primary_color_1"] .header {
+
+    .top-head .nav-control .hamburger .line {
+        background: #7366ff;
+    }
+
+    .top-head .header-right .fullscreen .full a {
+        background: #f8f8f8 !important;
+        color: #2b2b2b !important;
+    }
+
+    .top-head .header-right .notification_dropdown .cart-wrapper .cart-icon {
+        background: #f8f8f8 !important;
+    }
+
+    .top-head .header-right .my-account-wrapper .account-control .header-profile .header-info span {
+        color: #2b2b2b;
+    }
+}

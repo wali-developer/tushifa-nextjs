@@ -1,0 +1,94 @@
+/************************** 
+* Component Global
+***************************/
+
+[dir="rtl"] {
+    .widget {
+        .media {
+            .media-body {
+                margin-left: 0;
+
+                margin-right: 30px;
+                text-align: right;
+                padding-right: 0;
+            }
+        }
+    }
+
+    .widget-2 {
+        .list-group {
+            .list-group-item {
+                img {
+                    margin-right: 0;
+                    margin-left: 1rem;
+                }
+
+                .btn-success {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+    .widget-4 {
+        .bootstrap-media {
+            .media {
+                .media-body {
+                    padding-left: 0;
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+
+    // Calaender
+
+    .draggable-events {
+        .bottom-event {
+            .external-events {
+                .checkbox {
+                    input {
+                        margin-right: 0;
+                        margin-left: 13px;
+                    }
+                    label::before {
+                        margin-left: 0;
+                        margin-right: 0;
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // Pages
+
+    .doctor-info-details {
+        .left-content {
+            .media-body {
+                padding-left: 0;
+                padding-right: 30px;
+            }
+        }
+    }
+
+    .login-tabib {
+        .login-main {
+            .theme-form {
+                .link {
+                    right: auto;
+                    left: 0;
+                    direction: ltr;
+                }
+            }
+        }
+    }
+
+    .auth-404 {
+        .page-content {
+            h1 {
+                direction: ltr;
+            }
+        }
+    }
+}

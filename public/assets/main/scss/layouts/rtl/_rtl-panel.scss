@@ -1,0 +1,41 @@
+/************************** 
+* Panel Global
+***************************/
+[dir="rtl"] {
+    .in-demo-panel {
+        right: auto;
+        left: -280px;
+        direction: ltr;
+        &.active {
+            left: 0;
+            right: auto;
+        }
+
+        .demo-panel {
+            .select-Layout {
+                .items-panel {
+                    ul {
+                        li {
+                            &:before {
+                                margin-right: 0;
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            .mainicon {
+                &.sidebaricon {
+                    right: -40px;
+                    left: auto;
+                    border-radius: 0px 10px 10px 0px;
+                }
+            }
+        }
+    }
+
+    .demo-panel.nice-scroll > div > div {
+        direction: rtl;
+    }
+
+}

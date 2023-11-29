@@ -1,0 +1,26 @@
+/************************** 
+* Footer
+***************************/
+
+.footer {
+  padding-left: $fixed-with-layout;
+  background-color: $background-white;
+  @extend .shadow-header;
+  @extend .transition-layouts;
+  .copyright {
+    padding: 0.9375rem;
+    p {
+      text-align: $text-center;
+    }
+    a {
+      color: $primary;
+    }
+  }
+  @include respond("phone-land") {
+    padding-left: 0;
+  }
+}
+
+/************************** 
+* Media specifique
+***************************/

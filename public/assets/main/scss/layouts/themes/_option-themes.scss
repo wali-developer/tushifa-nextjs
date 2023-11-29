@@ -1,0 +1,323 @@
+/*****************************
+Main Color
+*****************************/
+@import "../../helpers/colors";
+@import "colors/main_priamry_colors";
+
+@import "wide/theme-wide-boxed";
+
+/*****************************
+Main Color
+*****************************/
+$primary_color: #f8f8f8;
+$primary_color_1: #ffffff;
+$primary_color_2: #7366ff;
+$primary_color_3: #1a202e;
+$primary_color_4: #6610f2;
+$primary_color_5: #36c95f;
+$primary_color_6: #4d06a5;
+$primary_color_7: #fd7e14;
+$primary_color_8: #ffc107;
+$primary_color_9: #20c997;
+$primary_color_10: #17a2b8;
+$primary_color_11: #5bcfc5;
+$primary_color_12: #343a40;
+$primary_color_13: #2a2a2a;
+$primary_color_14: #4885ed;
+
+//
+/*****************************
+Main Color class
+*****************************/
+
+.primary_color_1 {
+  border: 1px solid #c4c4c4;
+  background-color: $primary_color_1;
+  background: url(../../../../images/pattern_color.png);
+  background-size: 130%;
+}
+
+.primary_color_2 {
+  background-color: $primary_color_2;
+}
+
+.primary_color_3 {
+  background-color: $primary_color_3;
+}
+
+.primary_color_4 {
+  background-color: $primary_color_4;
+}
+
+.primary_color_5 {
+  background-color: $primary_color_5;
+}
+
+.primary_color_6 {
+  background-color: $primary_color_6;
+}
+
+.primary_color_7 {
+  background-color: $primary_color_7;
+}
+
+.primary_color_8 {
+  background-color: $primary_color_8;
+}
+
+.primary_color_9 {
+  background-color: $primary_color_9;
+}
+
+.primary_color_10 {
+  background-color: $primary_color_10;
+}
+
+.primary_color_11 {
+  background-color: $primary_color_11;
+}
+
+.primary_color_12 {
+  background-color: $primary_color_12;
+}
+
+.primary_color_13 {
+  background-color: $primary_color_13;
+}
+
+.primary_color_14 {
+  background-color: $primary_color_14;
+}
+
+/*****************************
+Theme Customizer
+*****************************/
+.in-demo-panel {
+  right: -280px;
+  position: fixed;
+  top: 0;
+  width: 280px;
+  background-color: $primary_color_1 !important;
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+
+  @include respond("tab-land") {
+    // display: none;
+  }
+  &.active {
+    right: 0;
+
+    .bg-close {
+      position: fixed;
+      z-index: -1;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .demo-panel {
+    z-index: 999999;
+    background: $primary_color;
+    height: 100%;
+    overflow-y: scroll;
+
+    .setting-panel-header {
+      padding: 20px;
+      color: #ffffff;
+      border: 1px solid $primary_color_2;
+      background: #000000;
+      background-color: $primary_color_2;
+      margin-bottom: 15px;
+      h6 {
+        color: #fff;
+      }
+    }
+
+    .select-Layout {
+      padding-left: 10px;
+      padding-right: 10px;
+
+      h6 {
+        color: #2b2b2b;
+        margin-bottom: 10px;
+      }
+
+      .items-panel {
+        padding: 20px;
+        border-bottom: 1px solid #ecf3fa !important;
+        background-color: #fff;
+        margin-bottom: 20px;
+        h6 {
+          color: #2b2b2b;
+          margin-bottom: 10px;
+        }
+        ul {
+          li {
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &:before {
+              content: "";
+              width: 15px;
+              height: 15px;
+              border: 1px solid #eee;
+              display: inline-block;
+              margin-right: 10px;
+              border-radius: 2px;
+            }
+
+            &.active:before {
+              background: #7366ff;
+              border: 1px solid #7366ff;
+            }
+          }
+        }
+      }
+
+      .list_my_color {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ecf3fa !important;
+        padding: 20px;
+        background-color: #ffffff;
+        ul {
+          li {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+            margin-right: 5px;
+            &:last-child {
+              margin-bottom: 10px !important;
+            }
+
+            &::before {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .layout-version {
+        ul {
+          li {
+            margin-bottom: 15px;
+            display: block;
+            img {
+              width: 100%;
+              margin-bottom: 10px;
+            }
+
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .mainicon.sidebaricon {
+      background: $primary_color_2;
+      padding: 13px 13px;
+      color: #ffffff;
+      position: absolute;
+      top: 30%;
+      left: -40px;
+      width: 40px;
+      border-radius: 10px 0 0 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+/*****************************
+Variable 
+*****************************/
+
+$colors_1: $primary_color_1, $primary_color_2, $primary_color_3, $primary_color_4,
+  $primary_color_5, $primary_color_6, $primary_color_7, $primary_color_8, $primary_color_9,
+  $primary_color_10, $primary_color_11, $primary_color_12, $primary_color_13, $primary_color_14;
+
+/*****************************
+Navigation Header
+*****************************/
+
+$total_1: 0;
+@each $nav_header in $colors_1 {
+  [data-nav-headerbg="primary_color_#{1 + $total_1}"] .nav-header {
+    background-color: $nav_header;
+  }
+
+  $total_1: $total_1 + 1;
+}
+
+/*****************************
+Sidebar Color
+*****************************/
+
+$total_1: 0;
+
+@each $sidebar_color in $colors_1 {
+  [data-sibebarbg="primary_color_#{1 + $total_1}"] .left-panel {
+    background-color: $sidebar_color;
+  }
+
+  $total_1: $total_1 + 1;
+}
+
+/*****************************
+Topbar Color
+*****************************/
+
+$total_1: 0;
+
+@each $top_bar in $colors_1 {
+  [data-topbar="primary_color_#{1 + $total_1}"] .header {
+    background-color: $top_bar;
+  }
+  $total_1: $total_1 + 1;
+}
+
+$data: 0;
+
+@each $data-color in $colors_1 {
+  [data-topbar="primary_color_#{1 + $data}"] {
+    .header {
+      .top-head {
+        .nav-control {
+          .hamburger {
+            .line {
+              background: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  $data: $data + 1;
+}
+
+//
+
+[data-sidebar-style="compact"] {
+  .nav-header {
+    .brand-logo {
+      .brand-title {
+        @include respond("tab-land") {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

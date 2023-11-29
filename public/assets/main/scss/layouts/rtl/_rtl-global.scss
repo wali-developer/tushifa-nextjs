@@ -1,0 +1,140 @@
+/************************** 
+* 
+***************************/
+[dir="rtl"] {
+    // Global Class
+    .float-end {
+        float: left !important;
+    }
+    .mr-4,
+    .mx-4 {
+        margin-right: 0 !important;
+        margin-left: 1.5rem !important;
+    }
+
+    .text-start {
+        text-align: right !important;
+    }
+
+    .m-rl > div {
+        padding-left: 12px;
+    }
+
+    table.dataTable thead > tr > th.sorting_asc,
+    table.dataTable thead > tr > th.sorting_desc,
+    table.dataTable thead > tr > th.sorting,
+    table.dataTable thead > tr > td.sorting_asc,
+    table.dataTable thead > tr > td.sorting_desc,
+    table.dataTable thead > tr > td.sorting {
+        padding-right: 12px;
+        padding-left: 30px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0;
+        margin-right: 0.5em;
+    }
+
+    .form-select {
+        background-position: left 0.75rem center;
+    }
+
+    .modal-header .modal-title img {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+
+    .modal-header .close {
+        margin: -1rem auto -1rem -1rem;
+    }
+
+    .dropdown-toggle::after {
+        margin-left: 0;
+        margin-right: 0.255em;
+    }
+    .dropdown .dropdown-menu li .dropdown-item {
+        text-align: right;
+    }
+
+    // Chart direction
+
+    #chart6,
+    #chart8 {
+        direction: ltr;
+    }
+
+    .btn-group-style-1 {
+        right: auto;
+        left: 29px;
+        .dropdown-menu {
+            .form-content a {
+                text-align: right;
+            }
+        }
+    }
+
+    .breadcrumb-item + .breadcrumb-item {
+        padding-left: 0;
+        padding-right: 0.5rem;
+        &::before {
+            padding-right: 0.5rem;
+            padding-left: 0;
+            transform: rotate(-180deg);
+        }
+    }
+
+    .checkbox label::before {
+        left: auto;
+        right: 0;
+        margin-left: 0;
+        margin-right: -26px;
+    }
+
+    .content-body {
+        margin-left: 0;
+        margin-right: 300px;
+
+        // (max-width: 1199px
+        @include respond("tab-land") {
+            margin-right: 5rem;
+            margin-left: 0 !important;
+        }
+
+        // max-width: 767px
+        @include respond("phone-land") {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+
+    .menu-toggle {
+        .content-body {
+            margin-left: 0;
+            margin-right: 5rem;
+            @include respond("phone-land") {
+                margin-right: 0 !important;
+            }
+        }
+    }
+}
+
+[dir="rtl"] [data-container="boxed"] .left-panel {
+    right: auto !important;
+}
+
+[dir="rtl"] [data-container="boxed"] .nav-header {
+    right: auto;
+}
+
+.layout_direction {
+    padding: 20px;
+    border-bottom: 1px solid #ecf3fa !important;
+    background-color: #fff;
+    margin-bottom: 20px;
+    ul {
+        li {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    }
+}

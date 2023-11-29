@@ -1,0 +1,20 @@
+/************************** 
+* Footer
+***************************/
+
+[dir="rtl"] {
+  .footer {
+    padding-left: 0;
+    padding-right: 300px;
+    background-color: #ffffff;
+    @include respond("phone-land") {
+      padding-right: 0;
+    }
+  }
+
+  .menu-toggle {
+    .footer {
+      padding-right: 5rem;
+    }
+  }
+}

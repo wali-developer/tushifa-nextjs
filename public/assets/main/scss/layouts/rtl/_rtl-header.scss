@@ -1,0 +1,100 @@
+/************************** 
+* Header
+***************************/
+
+[dir="rtl"] {
+    .header {
+        padding-left: 0;
+        padding-right: 300px;
+
+        @include respond("tab-land") {
+            padding-left: 0 !important;
+            padding-right: 5rem;
+        }
+
+        @include respond("phone-land") {
+            padding-right: 5rem;
+        }
+        .top-head {
+            direction: rtl;
+            .nav-control {
+                .hamburger {
+                    margin-right: 0;
+                    margin-left: 20px;
+                }
+                .left-header {
+                    i {
+                        margin-right: 0 !important;
+                        margin-left: 5px !important;
+                    }
+                }
+            }
+
+            .header-right > div {
+                margin-left: 0;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .menu-toggle {
+        .navigation .main-menu .has-submenu a i {
+            padding: 0;
+  
+        }
+        .header {
+            padding-left: 0;
+            padding-right: 5rem;
+        }
+    }
+
+
+
+
+    .widget-6 {
+        .cart-wrapper {
+            .cart-dropdown-form {
+                right: auto;
+                left: 0;
+                .form-content {
+                    .timeline {
+                        li {
+                            &:first-child {
+                                text-align: right;
+                            }
+                        }
+                    }
+                    .timeline-panel {
+                        .media-body {
+                            text-align: right;
+                            padding-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .widget-7 {
+        .header-info {
+            padding-right: 0 !important;
+            padding-left: 20px !important;
+        }
+        i:before {
+            margin-right: 0 !important;
+            margin-left: 10px;
+        }
+    }
+}
+
+[dir="rtl"] [data-sidebar-style="full"] {
+    .menu-toggle {
+        .header {
+            padding-left: 0;
+        }
+
+        .content-body {
+            margin-left: 0;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+/************************** 
+* 
+***************************/
+
+[dir="rtl"] {
+    .nav-header {
+        text-align: left;
+        left: auto;
+        right: 0;
+        .brand-logo{
+            direction: ltr;
+            justify-content: center;
+            .brand-title {
+                margin-left: 0;
+                margin-right: 5px;
+            }
+        } 
+    }
+}

@@ -1,0 +1,139 @@
+/************************** 
+* Sidebar Text
+***************************/
+[data-sibebartext="primary_color_6"] {
+    .navigation {
+        .main-menu {
+            .has-submenu {
+                a {
+                    color: rgba(255, 255, 255, 0.85);
+                    i {
+                        color: #cfd8e3;
+                    }
+                }
+                .has-arrow:after {
+                    border-color: rgba(255, 255, 255, 0.85);
+                }
+                .mm-collapse {
+                    li {
+                        a {
+                            color: #ffffff;
+                            background: transparent;
+                        }
+                    }
+
+                    li:hover a {
+                        background-color: rgba($white, 0.2);
+                    }
+                }
+                &:hover {
+                    a {
+                        background-color: rgba($white, 0.2);
+                    }
+                    .nav-label,
+                    i {
+                        color: $white;
+                    }
+                }
+                &.active {
+                    a {
+                        color: $white;
+                        background-color: rgba($white, 0.2);
+                        i {
+                            color: $white;
+                        }
+                        .nav-label {
+                            color: $white;
+                        }
+                    }
+                    .has-arrow {
+                        &:after {
+                            border-color: $white;
+                        }
+                    }
+                }
+                &.active-submenu {
+                    a {
+                        background-color: rgba($white, 0.2);
+                    }
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        .navigation {
+            .main-menu {
+                .has-submenu {
+                    .mm-collapse {
+                        background-color: $background-white;
+                        @include respond("min-tab-min") {
+                            background-color: $background-white;
+                        }
+
+                        li {
+                            a {
+                              
+                                @include respond("min-tab-min") {
+                                    color: #7e7e7e;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar-widgets {
+        p {
+            color: $white !important;
+        }
+    }
+}
+
+
+[data-sidebar-style="mini"]{
+
+    .navigation {
+        .main-menu {
+            .has-submenu {
+                .mm-collapse {
+                    li {
+                        a {
+                            color: #7e7e7e;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*****************************
+Topbar Color
+*****************************/
+[data-topbar="primary_color_6"] .header {
+    .top-head {
+        .nav-control {
+            .left-header {
+                ul {
+                    .nav-link {
+                        &:first-child {
+                            background-color: rgba($white, 0.2) !important;
+                            a {
+                                color: #ffffff;
+                            }
+                        }
+                        &:last-child {
+                            background-color: rgba($white, 0.2) !important;
+                            a {
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+/************************** 
+* 
+***************************/
+
+[dir="rtl"] {
+    .in-demo-panel {
+        .demo-panel {
+            .setting-panel-header {
+                h6 {
+                    color: #fff;
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .left-panel {
+        left: auto;
+        right: 0 !important;
+
+        @include respond("phone-land") {
+            right: -100% !important;
+        }
+
+        &.collapsed {
+            right: 0px !important;
+            width: 17rem;
+            overflow: scroll;
+        }
+    }
+
+    .navigation {
+        .main-menu {
+            .has-submenu {
+                a {
+                    i {
+                        padding: 0 0 0 1.5rem;
+                        @include respond("tab-land") {
+                            padding: 0;
+                        }
+                    }
+
+                    .badge {
+                        margin-right: 0.5rem !important;
+                    }
+
+                    &:after {
+                        right: auto !important;
+                        left: 1.875rem;
+                        -webkit-transform: rotate(-45deg) translateY(-50%);
+                        transform: rotate(-45deg) translateY(-50%);
+                    }
+                }
+
+                .mm-collapse {
+                    li {
+                        a {
+                            text-align: right;
+                            padding-right: 4.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        .navigation {
+            .main-menu {
+                .has-submenu {
+                    .mm-collapse {
+                        left: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+[dir="rtl"] [data-sidebar-style="full"][data-container="boxed"] {
+    .menu-toggle {
+        .left-panel.collapsed {
+            right: auto !important;
+        }
+        .navigation .main-menu .has-submenu .mm-collapse {
+            left: auto;
+            right: 100%;
+        }
+    }
+}
+
+[dir="rtl"] [data-sidebar-style="compact"] {
+    .nav-header {
+        width: 15rem;
+    }
+
+    .left-panel {
+        width: 15rem;
+    }
+}
