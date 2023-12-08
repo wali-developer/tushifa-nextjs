@@ -46,7 +46,7 @@ const Login = () => {
                   </div>
                 </div>
                 <p className="mt-4 mb-0">
-                  {"Don't"} have account?
+                  {"Don't"} have account?{" "}
                   <Link className="ms-2 text-primary text-center" href="/auth/register">
                     Create Account
                   </Link>

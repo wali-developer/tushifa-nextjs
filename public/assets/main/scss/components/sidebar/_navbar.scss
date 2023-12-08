@@ -11,8 +11,16 @@
       position: relative;
       padding-left: 15px;
       padding-right: 15px;
+      cursor: pointer;
+      .active {
+        background: $background;
+        span,
+        i {
+          color: $primary;
+        }
+      }
       @extend .transition-layouts;
-      a {
+      .itemWrapper {
         display: flex;
         align-items: center;
         color: $navbar-link;
@@ -53,6 +61,17 @@
           }
         }
       }
+      .subMenu {
+        transition: all 300ms ease-in-out;
+        li a {
+          color: $navbar-link;
+          background-color: white;
+          &:hover {
+            background-color: #f8f8f8;
+            color: $primary;
+          }
+        }
+      }
       .has-arrow:after {
         position: absolute;
         content: "";
@@ -81,24 +100,6 @@
         z-index: 1;
         padding: 0.5rem 0;
         @extend .transition-layouts;
-        li {
-          a {
-            text-align: $text-left;
-            position: relative;
-            display: block;
-            padding: 0.625rem 1.875rem;
-            color: $default-color;
-            text-decoration: none;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 3.7rem;
-            background: transparent;
-          }
-        }
-
-        li:hover a {
-          background-color: #f8f8f8;
-        }
       }
       &:hover {
         a {

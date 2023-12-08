@@ -28,13 +28,9 @@ export default function DashboardLayout({ children }) {
       <Script src="assets/plugins/datatables/jquery.dataTables.min.js" />
       <Script src="assets/js/init-tdatatable.js" />
 
-      {/*     <!-- Date Range Picker --> */}
-      <Script src="assets/plugins/daterangepicker/daterangepicker.min.js" />
-
       {/* Main Custom JQuery */}
       <Script src="assets/js/toggleFullScreen.js" />
       <Script src="assets/js/main.js" />
-      {/* <Script src="assets/js/option-themes.js" /> */}
     </>
   );
 }

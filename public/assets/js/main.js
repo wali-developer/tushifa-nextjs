@@ -96,24 +96,6 @@ $(".widget-3 input[type='file']").on("change", function () {
 });
 
 // ========================================================================= //
-//   Date Range
-// ========================================================================= //
-
-$('input[name="daterange"]').daterangepicker(
-  {
-    opens: "right",
-  },
-  function (start, end, label) {
-    console.log(
-      "A new date selection was made: " +
-        start.format("YYYY-MM-DD") +
-        " to " +
-        end.format("YYYY-MM-DD")
-    );
-  }
-);
-
-// ========================================================================= //
 //   Button Add Drugs
 // ========================================================================= //
 $("#butonAddDrug").click(function () {
@@ -170,24 +152,6 @@ $("#butonAddTest").click(function () {
 </form>`;
   $(".addTest").append(structure);
   // $('select').selectpicker();
-});
-
-// ========================================================================= //
-//  Change dates patient
-// ========================================================================= //
-
-$(function () {
-  $('input[name="dates"]').daterangepicker(
-    {
-      singleDatePicker: true,
-      showDropdowns: true,
-      minYear: 1901,
-      maxYear: parseInt(moment().format("YYYY"), 10),
-    },
-    function (start, end, label) {
-      var years = moment().diff(start, "years");
-    }
-  );
 });
 
 // ========================================================================= //

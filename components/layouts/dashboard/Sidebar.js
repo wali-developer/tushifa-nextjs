@@ -1,69 +1,88 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const Sidebar = () => {
+  const [selected, setSelected] = useState(null);
+  const menu = [
+    { label: "Dashboard", path: "/dashboard", icon: "fas fa-th-large" },
+    {
+      label: "Pharmacies",
+      path: "#",
+      icon: "fas fa-users",
+      hasSubmenu: true,
+      subMenu: [
+        { label: "New pharmacy", path: "/new-pharmacy" },
+        { label: "All pharmacy", path: "/all-pharmacies" },
+      ],
+    },
+    {
+      label: "Patients",
+      path: "#",
+      icon: "fas fa-users",
+      hasSubmenu: true,
+      subMenu: [
+        { label: "New Patient", path: "/new-patient" },
+        { label: "All Patients", path: "/all-patients" },
+      ],
+    },
+    {
+      label: "Prescriptions",
+      path: "#",
+      icon: "fas fa-book-medical",
+      hasSubmenu: true,
+      subMenu: [
+        { label: "New Prescription", path: "/new-prescription" },
+        { label: "All Prescriptions", path: "/all-prescription" },
+        { label: "Prescription requests", path: "/prescription-requests" },
+      ],
+    },
+    { label: "Settings", path: "settings", icon: "fas fa-th-large" },
+  ];
   return (
     <aside className="left-panel nicescroll-box">
       <nav className="navigation">
         <ul className="list-unstyled main-menu">
-          <li className="has-submenu active">
-            <Link href="/dashboard">
-              <i className="fas fa-th-large"></i>
-              <span className="nav-label">Dashboard</span>
-            </Link>
-          </li>
-          <li className="has-submenu">
-            <Link href="javascript:void()" className="has-arrow mm-collapsed">
-              <i className="fas fa-users"></i>
-              <span className="nav-label">Pharmacies</span>
-            </Link>
-            <ul className="list-unstyled mm-collapse">
-              <li>
-                <Link href="/new-pharmacy">New pharmacy</Link>
+          {menu.map((item, index) => {
+            const active = selected?.label == item?.label;
+            return !item?.hasSubmenu ? (
+              <li className="has-submenu" key={index}>
+                <Link href={item?.path} className={`itemWrapper ${active ? "active" : ""}`}>
+                  <i className={item?.icon}></i>
+                  <span className="nav-label">{item?.label}</span>
+                </Link>
               </li>
-              <li>
-                <Link href="/all-pharmacies">All pharmacy</Link>
+            ) : (
+              <li className="has-submenu" key={index}>
+                <div
+                  className={`itemWrapper has-arrow mm-collapsed ${active ? "active" : ""}`}
+                  onClick={() => {
+                    selected ? setSelected(null) : setSelected(item);
+                  }}
+                >
+                  <i className={item?.icon}></i>
+                  <span className="nav-label">{item?.label}</span>
+                </div>
+                <ul
+                  className="list-unstyled subMenu"
+                  style={{
+                    height: active ? item?.subMenu?.length * 58 : 0,
+                    visibility: active ? "visible" : "hidden",
+                    opacity: active ? 1 : 0,
+                  }}
+                >
+                  {item?.subMenu?.map((sub, i) => (
+                    <li style={{ paddingLeft: 40 }} key={i}>
+                      <Link href={sub?.path} className="itemWrapper">
+                        <span>{sub?.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
-            </ul>
-          </li>
-          <li className="has-submenu">
-            <Link href="javascript:void()" className="has-arrow mm-collapsed">
-              <i className="fas fa-users"></i>
-              <span className="nav-label">Patients</span>
-            </Link>
-            <ul className="list-unstyled mm-collapse">
-              <li>
-                <Link href="/new-patient">New Patient</Link>
-              </li>
-              <li>
-                <Link href="/all-patients">All Patients</Link>
-              </li>
-            </ul>
-          </li>
-
-          <li className="has-submenu">
-            <Link href="javascript:void()" className="has-arrow mm-collapsed">
-              <i className="fas fa-book-medical"></i>
-              <span className="nav-label">Prescriptions</span>
-            </Link>
-            <ul className="list-unstyled mm-collapse">
-              <li>
-                <Link href="/new-prescription">New Prescription</Link>
-              </li>
-              <li>
-                <Link href="/all-prescription">All Prescriptions</Link>
-              </li>
-              <li>
-                <Link href="/prescription-requests">Prescription requests</Link>
-              </li>
-            </ul>
-          </li>
-          <li className="has-submenu">
-            <Link href="/settings">
-              <i className="fas fa-th-large"></i>
-              <span className="nav-label">Settings</span>
-            </Link>
-          </li>
+            );
+          })}
         </ul>
       </nav>
       <div className="sidebar-widgets">
