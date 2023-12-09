@@ -1,7 +1,50 @@
+"use client";
+
+import InputField from "@/components/form/InputField";
+import PasswordField from "@/components/form/PasswordField";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = userInfo;
+
+    setLoading(true);
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    setLoading(false);
+
+    if (res?.error) return alert(res?.error);
+    setUserInfo({
+      email: "",
+      password: "",
+    });
+    router.replace("/dashboard");
+  };
+
   return (
     <main className="auth">
       <div id="main-wrapper" className="show">
@@ -13,22 +56,26 @@ const Login = () => {
               </Link>
             </div>
             <div className="login-main">
-              <form className="theme-form">
+              <form className="theme-form" onSubmit={handleSubmit}>
                 <h4>Sign in to account</h4>
                 <p>Enter your email & password to login</p>
-                <div className="form-group m-b-10">
-                  <label className="col-form-label">Email Address</label>
-                  <input className="form-control" type="email" placeholder="Tabib@gmail.com" />
-                </div>
-                <div className="form-group m-b-10">
-                  <label className="col-form-label">Password</label>
-                  <div className="form-input position-relative">
-                    <input className="form-control" type="password" placeholder="*********" />
-                    <div className="show-hide">
-                      <span className="show"></span>
-                    </div>
-                  </div>
-                </div>
+                <InputField
+                  label="Email"
+                  type="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  value={userInfo.email}
+                  onChange={handleChange}
+                />
+                <PasswordField
+                  label="Password"
+                  type="password"
+                  placeholder="Enter your password"
+                  name="password"
+                  value={userInfo.password}
+                  onChange={handleChange}
+                />
+
                 <div className="form-group mb-0">
                   <div className="checkbox p-0">
                     <input id="checkbox1" type="checkbox" />
@@ -40,9 +87,17 @@ const Login = () => {
                     Forgot password?
                   </Link>
                   <div className="mt-3">
-                    <Link href="/dashboard" className="btn btn-primary w-100">
+                    <button
+                      className="btn btn-primary w-100"
+                      type="submit"
+                      accordion
+                      disabled={loading}
+                      style={{
+                        opacity: loading ? 0.5 : 1,
+                      }}
+                    >
                       Sign in
-                    </Link>
+                    </button>
                   </div>
                 </div>
                 <p className="mt-4 mb-0">

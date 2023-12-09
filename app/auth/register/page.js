@@ -17,23 +17,12 @@ const Register = () => {
                 <h4>Create your account</h4>
                 <p>Enter your personal details to create account</p>
                 <div className="form-group m-b-10">
-                  <label className="col-form-label pt-0">Your Name</label>
-                  <div className="row g-2">
-                    <div className="col-md-12 col-lg-6">
-                      <div className="form-group mb-0">
-                        <input className="form-control" type="text" placeholder="First name" />
-                      </div>
-                    </div>
-                    <div className="col-md-12 col-lg-6">
-                      <div className="form-group mb-0">
-                        <input className="form-control" type="text" placeholder="Last name" />
-                      </div>
-                    </div>
-                  </div>
+                  <label className="col-form-label">Name</label>
+                  <input className="form-control" type="text" placeholder="Enter your name" />
                 </div>
                 <div className="form-group m-b-10">
                   <label className="col-form-label">Email Address</label>
-                  <input className="form-control" type="email" placeholder="Tabib@gmail.com" />
+                  <input className="form-control" type="email" placeholder="Enter your email" />
                 </div>
                 <div className="form-group m-b-10">
                   <label className="col-form-label">Password</label>
