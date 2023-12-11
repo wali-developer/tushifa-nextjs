@@ -8,25 +8,75 @@ import React from "react";
 const Dashboard = () => {
   const columns = [
     {
-      name: "Title",
+      name: "Patient name",
       selector: (row) => row.title,
     },
     {
-      name: "Year",
-      selector: (row) => row.year,
+      name: "Age",
+      selector: (row) => row.age,
+    },
+    {
+      name: "Email",
+      selector: (row) => row.email,
+    },
+    {
+      name: "Mobile No.",
+      selector: (row) => row.mobile,
+    },
+    {
+      name: "Gender",
+      selector: (row) => row.gender,
+    },
+    {
+      name: "Sex",
+      selector: (row) => row.sex,
+    },
+    {
+      name: "Action",
+      selector: (row) => row.action,
     },
   ];
 
   const data = [
     {
       id: 1,
-      title: "Beetlejuice",
-      year: "1988",
+      title: "Airi",
+      age: "20",
+      email: "test@gmail.com",
+      mobile: "658543469",
+      gender: "Married",
+      sex: "Male",
+      action: "Action",
     },
     {
       id: 2,
-      title: "Ghostbusters",
-      year: "1984",
+      title: "Airi",
+      age: "20",
+      email: "test@gmail.com",
+      mobile: "658543469",
+      gender: "Married",
+      sex: "Male",
+      action: "Action",
+    },
+    {
+      id: 3,
+      title: "Airi",
+      age: "20",
+      email: "test@gmail.com",
+      mobile: "658543469",
+      gender: "Married",
+      sex: "Male",
+      action: "Action",
+    },
+    {
+      id: 4,
+      title: "Airi",
+      age: "20",
+      email: "test@gmail.com",
+      mobile: "658543469",
+      gender: "Married",
+      sex: "Male",
+      action: "Action",
     },
   ];
 
