@@ -6,7 +6,8 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true, trim: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ["admin", "pharmist"], default: "pharmist" },
+  role: { type: String, enum: ["admin", "pharmacist"], default: "pharmacist" },
+  pharmacyId: { type: Schema.Types.ObjectId, ref: "Pharmacy" },
 });
 
 // hash the password before saving

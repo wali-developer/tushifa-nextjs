@@ -1,24 +1,30 @@
 import startDbConnection from "@/libs/db";
-import PatientModel from "@/models/patientModel";
+import PharmacyModel from "@/models/pharmacyModel";
+import UserModal from "@/models/userModel";
 import { NextResponse } from "next/server";
 
-// Create a patient
+// Create a pharmacy
 export const POST = async (req) => {
   const body = await req.json();
 
   try {
     await startDbConnection();
 
-    const patient = await PatientModel.create({ ...body });
+    const pharmacy = await PharmacyModel.create({ ...body });
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: `Patient ${patient.name} added successfully!`,
-        patient: patient,
-      },
-      { status: 200 }
-    );
+    await UserModal.create({
+      email: body.email,
+      name: body.name,
+      password: body.password,
+      role: "pharmacist",
+      pharmacyId: pharmacy._id,
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: `Pharmacy ${pharmacy.name} added successfully!`,
+      pharmacy: pharmacy,
+    });
   } catch (error) {
     return NextResponse.json(
       { success: false, message: error?._message, error: error },
@@ -27,16 +33,16 @@ export const POST = async (req) => {
   }
 };
 
-// Get all patients
+// Get all pharmacies
 export const GET = async (req) => {
   try {
     await startDbConnection();
 
-    const patients = await PatientModel.find();
+    const pharmaciees = await PharmacyModel.find();
 
     return NextResponse.json({
       success: true,
-      data: patients,
+      data: pharmaciees,
     });
   } catch (error) {
     return NextResponse.json(
