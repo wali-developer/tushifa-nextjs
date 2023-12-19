@@ -5,12 +5,16 @@ import { NextResponse } from "next/server";
 
 // Create a pharmacy
 export const POST = async (req) => {
-  const body = await req.json();
-
   try {
+    const body = await req.json();
     await startDbConnection();
 
-    const pharmacy = await PharmacyModel.create({ ...body });
+    const pharmacyData = {
+      ...body,
+      approved_prescription: [],
+    };
+
+    const pharmacy = await PharmacyModel.create(pharmacyData);
 
     await UserModal.create({
       email: body.email,

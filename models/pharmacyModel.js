@@ -1,16 +1,17 @@
 import { Schema, model, models } from "mongoose";
+import bcrypt from "bcrypt";
 
 const pharmacySchema = new Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, index: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     address: { type: String, required: true },
     point_person: { type: String, required: true },
     contact: { type: Number, required: true },
     approved_prescription: [
       {
-        drug_name: { type: String, unique: true },
+        drug_name: String,
         drug_quantity: Number,
         price: Number,
       },
