@@ -94,7 +94,7 @@ const Dashboard = () => {
         <PatientsList />
 
         {/*  */}
-        <DataTableBase columns={columns} data={data} selectableRows />
+        <DataTableBase columns={columns} data={data} />
       </div>
     </div>
   );

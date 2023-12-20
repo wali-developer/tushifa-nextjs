@@ -1,5 +1,6 @@
 import startDbConnection from "@/libs/db";
 import PatientModel from "@/models/patientModel";
+import saveBase64Image from "@/utils/saveBase64Image";
 import { NextResponse } from "next/server";
 
 // Create a patient
@@ -8,8 +9,15 @@ export const POST = async (req) => {
 
   try {
     await startDbConnection();
+    const coverImg = await saveBase64Image(body.cnic.photocopy, "cnic-photocopy.jpg");
 
-    const patient = await PatientModel.create({ ...body });
+    const patient = await PatientModel.create({
+      ...body,
+      cnic: {
+        cnic_number: body.cnic.cnic_number,
+        photocopy: coverImg,
+      },
+    });
 
     return NextResponse.json(
       {
