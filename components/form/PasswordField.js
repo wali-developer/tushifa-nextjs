@@ -2,7 +2,7 @@ import React from "react";
 
 const PasswordField = ({ label, placeholder, ...rest }) => {
   return (
-    <div className="form-group m-b-10">
+    <div className="form-group">
       <label className="col-form-label">{label}</label>
       <div className="form-input position-relative">
         <input className="form-control" type="password" placeholder={placeholder} {...rest} />

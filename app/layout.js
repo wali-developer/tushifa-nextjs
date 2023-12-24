@@ -6,6 +6,7 @@ import "../public/assets/plugins/slick-carousel/slick/slick-theme.css";
 import "../public/assets/main/scss/style.scss";
 import NextTopLoader from "nextjs-toploader";
 import AuthProvider from "@/components/AuthProvider";
+import { Toaster } from "react-hot-toast";
 // import "./globals.css";
 
 export const metadata = {
@@ -40,6 +41,19 @@ export default function RootLayout({ children }) {
         <body>
           <NextTopLoader color="#FF4522" />
           {children}
+          <Toaster
+            position="bottom-center"
+            reverseOrder={false}
+            gutter={8}
+            toastOptions={{
+              duration: 5000,
+              style: {
+                color: "white",
+                background: "#000",
+                fontSize: 14,
+              },
+            }}
+          />
 
           {/* <!-- Main jQuery --> */}
           <Script src="/assets/plugins/jquery/jquery.js" />

@@ -6,7 +6,6 @@ const FilterComponent = ({ onFilter, onClear, filterText }) => {
       <label className="d-inline-block mt-2">Search:</label>
       <input
         type="text"
-        placeholder="Search..."
         value={filterText}
         onChange={onFilter}
         style={{

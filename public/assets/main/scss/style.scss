@@ -59,3 +59,42 @@
 @import "templates/blog-sidebar.scss";
 // Footer
 @import "templates/footer.scss";
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Reac datatable
+
+.table-action {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  button {
+    border: none;
+    color: gray;
+    font-size: 15px;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.data-table-extensions > .data-table-extensions-filter {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 0 14px;
+  border-radius: 8px;
+  .icon {
+    margin-top: 6px;
+  }
+}

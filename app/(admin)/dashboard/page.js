@@ -20,7 +20,7 @@ const Dashboard = () => {
       selector: (row) => row.email,
     },
     {
-      name: "Mobile No.",
+      name: "Contact",
       selector: (row) => row.mobile,
     },
     {
@@ -28,12 +28,14 @@ const Dashboard = () => {
       selector: (row) => row.gender,
     },
     {
-      name: "Sex",
+      name: "CNIC number",
       selector: (row) => row.sex,
     },
     {
       name: "Action",
-      selector: (row) => row.action,
+      selector: (row) => {
+        return <button>Button</button>;
+      },
     },
   ];
 
@@ -44,9 +46,8 @@ const Dashboard = () => {
       age: "20",
       email: "test@gmail.com",
       mobile: "658543469",
-      gender: "Married",
-      sex: "Male",
-      action: "Action",
+      gender: "Male",
+      sex: "4930284902",
     },
     {
       id: 2,
@@ -54,9 +55,8 @@ const Dashboard = () => {
       age: "20",
       email: "test@gmail.com",
       mobile: "658543469",
-      gender: "Married",
-      sex: "Male",
-      action: "Action",
+      gender: "Male",
+      sex: "4930284902",
     },
     {
       id: 3,
@@ -64,9 +64,8 @@ const Dashboard = () => {
       age: "20",
       email: "test@gmail.com",
       mobile: "658543469",
-      gender: "Married",
-      sex: "Male",
-      action: "Action",
+      gender: "Male",
+      sex: "4930284902",
     },
     {
       id: 4,
@@ -74,9 +73,8 @@ const Dashboard = () => {
       age: "20",
       email: "test@gmail.com",
       mobile: "658543469",
-      gender: "Married",
-      sex: "Male",
-      action: "Action",
+      gender: "Male",
+      sex: "4930284902",
     },
   ];
 

@@ -9,7 +9,7 @@ const patientSchema = new Schema(
     address: { type: String, required: true },
     cnic: {
       cnic_number: { type: Number, required: true },
-      photocopy: { type: String, required: true },
+      photocopy: { type: String },
     },
     attending_physician_name: { type: String, required: true },
     attendant_details: {

@@ -153,12 +153,13 @@
     align-items: center;
     justify-content: center;
     text-align: $text-center;
-    background-image: url("https://via.placeholder.com/256/f8f8f8/2b2b2b");
+    // background-image: url("https://via.placeholder.com/256/f8f8f8/2b2b2b");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    background-color: #f8f8f8;
     @include borderRadius(5px);
     @include respond("phone") {
       width: 100%;

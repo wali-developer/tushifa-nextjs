@@ -1,279 +1,166 @@
+"use client";
+
+import EditPharmacyModal from "@/components/admin/pharmacy/EditPharmacyModal";
+import ViewPharmacyModal from "@/components/admin/pharmacy/ViewPharmacyModal";
+import DataTableBase from "@/components/common/DataTable";
+import DeleteConfirmationModal from "@/components/common/DeleteConfirmationModal";
+import Loader from "@/components/common/Loader";
+import API from "@/utils/api";
+import getHeader from "@/utils/getHeader";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AllPharmacies = () => {
+  const header = getHeader();
+  const [pharmaciesList, setPharmaciesList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [selected, setSelected] = useState({});
+
+  useEffect(() => {
+    loadPharmaciesData();
+  }, []);
+
+  // Load pharmacies record
+  const loadPharmaciesData = async () => {
+    try {
+      setLoading(true);
+      const { data } = await API.get("/pharmacies", header);
+      if (Array.isArray(data.data)) {
+        setPharmaciesList(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Delete handler
+  const handleDelete = async () => {
+    try {
+      setDeleting(true);
+      const { data } = await API.delete(`/pharmacies/${selected._id}`, header);
+      if (data?.success) {
+        toast.success(data?.message);
+        setSelected({});
+        loadPharmaciesData();
+      } else {
+        toast.error(data?.error);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const columns = [
+    {
+      name: "Pharmacy name",
+      selector: (row) => row.name,
+      sortable: true,
+    },
+
+    {
+      name: "Email",
+      selector: (row) => row.email,
+      sortable: true,
+    },
+
+    {
+      name: "Contact",
+      selector: (row) => row.contact,
+      sortable: true,
+    },
+
+    {
+      name: "Address",
+      selector: (row) => row.address,
+      sortable: true,
+    },
+    {
+      name: "Point person",
+      selector: (row) => row.point_person,
+      sortable: true,
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <div className="table-action d-flex align-items-center">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#viewModal"
+            onClick={() => setSelected(row)}
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+            onClick={() => setSelected(row)}
+          >
+            <i className="fas fa-edit"></i>
+          </button>
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteConfimation"
+            onClick={() => setSelected(row)}
+          >
+            <i className="fas fa-trash"></i>
+          </button>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <div className="content-body">
-      <div className="warper container-fluid">
-        <div className="all-patients main_container">
-          <div className="row page-titles mx-0">
-            <div className="col-sm-6 p-md-0">
-              <div className="welcome-text">
-                <h4 className="text-primary">All Pharmacy</h4>
+    <>
+      <div className="content-body">
+        <div className="warper container-fluid">
+          <div className="all-patients main_container">
+            <div className="row page-titles mx-0">
+              <div className="col-sm-6 p-md-0">
+                <div className="welcome-text">
+                  <h4 className="text-primary">All Pharmacy</h4>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="card">
-                <div className="card-header fix-card">
-                  <div className="row">
-                    <div className="col-8 d-flex gap-2 align-items-center">
-                      {/* <!-- <div className="exportBtn">
-                      <span className="fas fa-cloud-upload-alt"></span>
-                      <p>Import list</p>
-                    </div> --> */}
-                      <div className="exportBtn">
-                        <span className="fas fa-cloud-download-alt"></span>
-                        <p>Export list</p>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="card">
+                  <div className="card-header fix-card">
+                    <div className="row">
+                      <div className="col-8 d-flex gap-2 align-items-center"></div>
+                      <div className="col-4" style={{ textAlign: "right" }}>
+                        <Link href="/new-pharmacy" className="btn btn-primary float-end">
+                          New Pharmacy
+                        </Link>
                       </div>
                     </div>
-                    <div className="col-4" style={{ textAlign: "right" }}>
-                      <a href="#" className="btn btn-primary float-end">
-                        New Pharmacy
-                      </a>
-                    </div>
                   </div>
-                </div>
-                <div className="card-body">
-                  <div className="table-responsive">
-                    <table id="example2" className="display nowrap">
-                      <thead>
-                        <tr>
-                          <th>SN</th>
-                          <th>Pharmacy Name</th>
-                          <th>Email</th>
-                          <th>Mobile No.</th>
-                          <th>Address</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>P-0001</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>P-0002</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>P-0003</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>P-0004</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>P-0005</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>P-0006</td>
-                          <td>
-                            <img
-                              className="rounded-circle"
-                              width="35"
-                              src="https://via.placeholder.com/35/f8f8f8/2b2b2b"
-                              alt=""
-                            />
-                            <span className="text-black ms-2">Airi Satou</span>
-                          </td>
-                          <td>test@gmail.com</td>
-                          <td>658543469</td>
-                          <td>Peshawar, Pakistan</td>
-                          <td>
-                            <a className="mr-4 vue">
-                              <span className="fa fa-eye tbl-eye" aria-hidden="true"></span>
-                            </a>
-                            <a
-                              data-bs-toggle="modal"
-                              data-bs-target="#modal-edit"
-                              className="mr-4"
-                            >
-                              <span className="fas fa-pencil-alt tbl-edit"></span>
-                            </a>
-                            <a className="mr-4 delet">
-                              <span className="fas fa-trash-alt tbl-delet"></span>
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            {/* <!-- Modal --> */}
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">
-                      Modal title
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">...</div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                      Close
-                    </button>
-                    <button type="button" className="btn btn-primary">
-                      Save changes
-                    </button>
-                  </div>
+                  <DataTableBase columns={columns} data={pharmaciesList} />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      {loading && <Loader />}
+      <DeleteConfirmationModal
+        modalId="deleteConfimation"
+        onConfirm={() => handleDelete()}
+        loading={deleting}
+      />
+      <EditPharmacyModal
+        modalId="editModal"
+        data={selected}
+        callback={() => loadPharmaciesData()}
+      />
+      <ViewPharmacyModal modalId="viewModal" data={selected} />
+    </>
   );
 };
 

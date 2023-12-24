@@ -46,6 +46,8 @@ export const PUT = async (req, { params }) => {
     }
 
     return NextResponse.json({
+      success: true,
+      message: `Pharmacy ${updatedPharmacy.name} is updated successfully!`,
       pharmacy: updatedPharmacy,
     });
   } catch (error) {

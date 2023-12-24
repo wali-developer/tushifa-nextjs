@@ -1,21 +1,44 @@
 import startDbConnection from "@/libs/db";
 import PatientModel from "@/models/patientModel";
-import saveBase64Image from "@/utils/saveBase64Image";
+import saveImage from "@/utils/saveImage";
 import { NextResponse } from "next/server";
 
 // Create a patient
 export const POST = async (req) => {
-  const body = await req.json();
-
   try {
+    const data = await req.formData();
+
+    const name = data.get("name");
+    const age = data.get("age");
+    const gender = data.get("gender");
+    const contact = data.get("contact");
+    const address = data.get("address");
+    const cnic_number = data.get("cnic_number");
+    const photocopy = data.get("photocopy");
+    const attending_physician_name = data.get("attending_physician_name");
+    const attendantName = data.get("attendantName");
+    const attendantContact = data.get("attendantContact");
+    const attendant_relation_to_patient = data.get("attendant_relation_to_patient");
+
+    const cnicPhotocopy = await saveImage(photocopy);
+
     await startDbConnection();
-    const coverImg = await saveBase64Image(body.cnic.photocopy, "cnic-photocopy.jpg");
 
     const patient = await PatientModel.create({
-      ...body,
+      name: name,
+      age: age,
+      gender: gender,
+      contact: contact,
+      address: address,
       cnic: {
-        cnic_number: body.cnic.cnic_number,
-        photocopy: coverImg,
+        cnic_number: cnic_number,
+        photocopy: cnicPhotocopy,
+      },
+      attending_physician_name: attending_physician_name,
+      attendant_details: {
+        name: attendantName,
+        contact: attendantContact,
+        relation_to_patient: attendant_relation_to_patient,
       },
     });
 

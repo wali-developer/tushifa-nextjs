@@ -1,14 +1,23 @@
 import startDbConnection from "@/libs/db";
 import PrescriptionModel from "@/models/prescriptionModel";
+import saveImage from "@/utils/saveImage";
 import { NextResponse } from "next/server";
 
 // Create a patient
 export const POST = async (req) => {
   try {
-    const body = await req.json();
+    const data = await req.formData();
+
+    const photocopy = data.get("photocopy");
+    const patient = data.get("patient");
+    const prescriptionPhotocopy = await saveImage(photocopy);
+
     await startDbConnection();
 
-    const prescription = await PrescriptionModel.create({ ...body });
+    const prescription = await PrescriptionModel.create({
+      photocopy: prescriptionPhotocopy,
+      patient: patient,
+    });
 
     return NextResponse.json(
       {
@@ -30,8 +39,7 @@ export const POST = async (req) => {
 export const GET = async (req) => {
   try {
     await startDbConnection();
-
-    const prescriptions = await PrescriptionModel.find();
+    const prescriptions = await PrescriptionModel.find().populate("patient");
 
     return NextResponse.json({
       success: true,

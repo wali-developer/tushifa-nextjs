@@ -24,8 +24,9 @@ export default async function DashboardLayout({ children }) {
       <Script src="assets/plugins/jquery/jquery.min.js" />
       {/* <!-- popper js --> */}
       <Script src="assets/plugins/popper/popper.min.js" />
+
       {/* <!-- Bootstrap --> */}
-      <Script src="assets/plugins/bootstrap/js/bootstrap.js" />
+      {/* <Script src="assets/plugins/bootstrap/js/bootstrap.js" /> */}
 
       {/* Moment */}
       <Script src="assets/plugins/moment/moment.min.js" />

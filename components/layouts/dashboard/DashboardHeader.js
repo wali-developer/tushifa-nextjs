@@ -19,11 +19,11 @@ const DashboardHeader = () => {
       <div className="header">
         <header className="top-head container-fluid">
           <div className="nav-control">
-            <div className="hamburger">
+            {/* <div className="hamburger">
               <span className="line"></span>
               <span className="line"></span>
               <span className="line"></span>
-            </div>
+            </div> */}
             <div className="left-header content-header__menu">
               <ul className="list-unstyled">
                 <li className="nav-link btn">

@@ -1,6 +1,77 @@
-import React from "react";
+"use client";
+
+import ButtonLoader from "@/components/common/ButtonLoader";
+import FileInput from "@/components/common/FileInput";
+import API from "@/utils/api";
+import getHeader from "@/utils/getHeader";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const NewPrescription = () => {
+  const router = useRouter();
+  const header = getHeader();
+  const [patients, setPatients] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [payload, setPayload] = useState({
+    photocopy: "",
+    patient: "",
+  });
+
+  // Load patients dropdown
+  useEffect(() => {
+    const loadPatientsDropdown = async () => {
+      try {
+        const { data } = await API.get("/patients/dropdown", header);
+        if (Array.isArray(data)) {
+          setPatients(data);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+      }
+    };
+    loadPatientsDropdown();
+  }, []);
+
+  const handleChange = (event) => {
+    setPayload((prev) => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
+  // create prescription handler
+  const createPrescription = async (e) => {
+    e.preventDefault();
+    const header = getHeader();
+
+    const formData = new FormData();
+    formData.append("photocopy", payload.photocopy);
+    formData.append("patient", payload.patient);
+
+    try {
+      setLoading(true);
+      const { data } = await API.post("/prescriptions", formData, header);
+      if (data?.success == true) {
+        toast.success(data?.message);
+        setPayload({
+          photocopy: "",
+          patient: "",
+        });
+        router.push("/all-prescription");
+      } else if (data?.success == false) {
+        toast.error("Failed to create prescription, please try again");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="content-body">
       <div className="warper container-fluid">
@@ -20,129 +91,56 @@ const NewPrescription = () => {
                   <h4 className="card-title">Patient informations</h4>
                 </div>
                 <div className="card-body">
-                  <form>
-                    <div className="form-group">
-                      <select className="form-control form-select">
-                        <option>Select Patient...</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                        <option>Full Name</option>
-                      </select>
-                    </div>
-                    <div className="mt-5">
-                      <h5>Attachments / Documents photocopies</h5>
-                    </div>
-                    <div className="row mt-4 form-group widget-3">
-                      <div className="col-lg-3">
-                        <h6>Upload CNIC</h6>
-                        <div className="form-input position-relative">
-                          <label className="labeltest" for="file-ip-1">
-                            <span
-                              style={{
-                                position: "absolute",
-                                top: 50,
-                                right: 100,
-                                color: "rgb(86, 86, 255)",
-                                textDecoration: "underline",
-                                fontSize: 17,
+                  <form onSubmit={createPrescription}>
+                    <div className="row">
+                      <div className="col-xl-4">
+                        <div className="form-group row widget-3">
+                          <div className="col-lg-12">
+                            <FileInput
+                              required
+                              label="Prescription photocopy"
+                              onChange={(file) => {
+                                setPayload((prev) => {
+                                  return {
+                                    ...prev,
+                                    photocopy: file,
+                                  };
+                                });
                               }}
-                            >
-                              Browse
-                            </span>
-                          </label>
-                          <input
-                            type="file"
-                            id="file-ip-1"
-                            accept="image/*"
-                            onchange="showPreview(event);"
-                          />
-                          {/* <!-- <div className="preview">
-                              <img id="file-ip-1-preview" src="#" alt="img" />
-                            </div> --> */}
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div className="col-lg-3">
-                        <h6>Upload prescription photocopy</h6>
-                        <div className="form-input position-relative">
-                          <label className="labeltest" for="file-ip-1">
-                            <span
-                              style={{
-                                position: "absolute",
-                                top: 50,
-                                right: 100,
-                                color: "rgb(86, 86, 255)",
-                                textDecoration: "underline",
-                                fontsize: 17,
-                              }}
-                            >
-                              Browse
-                            </span>
-                          </label>
-                          <input
-                            type="file"
-                            id="file-ip-1"
-                            accept="image/*"
-                            onchange="showPreview(event);"
-                          />
-                          {/* <!-- <div className="preview">
-                              <img id="file-ip-1-preview" src="#" alt="img" />
-                            </div> --> */}
+
+                      <div className="col-xl-4">
+                        <div className="form-group">
+                          <select
+                            className="form-control form-select"
+                            placeholder="Gender"
+                            name="patient"
+                            value={payload.patient}
+                            onChange={handleChange}
+                          >
+                            <option defaultChecked>Select patient</option>
+                            {patients.map((patient, index) => (
+                              <option value={patient?.value} key={index}>
+                                {patient?.label}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                     </div>
-                    <div className="form-group text-center d-none">
-                      <img
-                        src="assets/images/patient-icon.png"
-                        className="img-profile rounded-circle img-fluid"
-                        alt="img"
-                      />
+
+                    <div className="row">
+                      <div className="col-4"></div>
+                      <div className="form-group text-right mt-5 col-4">
+                        <button type="submit" className="btn btn-primary float-end">
+                          {loading ? <ButtonLoader /> : "Create"}
+                        </button>
+                      </div>
                     </div>
                   </form>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12">
-              <div className="card shadow mb-4">
-                <div className="card-header">
-                  <h4 className="card-title">Drugs list</h4>
-                </div>
-                <div className="card-body">
-                  <div className="drugslist"></div>
-                  <div className="form-group" style={{ textAlign: "right" }}>
-                    <button type="button" className="btn btn-primary float-end" id="butonAddDrug">
-                      Add Drug
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12">
-              <div className="card shadow mb-4">
-                <div className="card-header">
-                  <h4 className="card-title">Tests list</h4>
-                </div>
-                <div className="card-body">
-                  <div className="addTest"></div>
-                  <div className="form-group" style={{ textAlign: "right" }}>
-                    <button type="submit" className="btn btn-primary float-end" id="butonAddTest">
-                      Add Test
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12">
-              <div className="card shadow mb-4">
-                <div className="card-body">
-                  <div className="form-group" style={{ textAlign: "right" }}>
-                    <button type="submit" className="btn btn-primary float-end">
-                      Create Prescription
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

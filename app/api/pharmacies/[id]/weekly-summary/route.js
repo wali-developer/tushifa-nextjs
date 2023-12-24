@@ -3,11 +3,6 @@ import FulfillmentModel from "@/models/fulfillmentModel";
 import PharmacyModel from "@/models/pharmacyModel";
 import { getEndOfWeek, getStartOfWeek } from "@/utils/dateUtils";
 import { NextResponse } from "next/server";
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 
 export const GET = async (req, { params }) => {
   const pharmacyId = params.id;
