@@ -1,6 +1,6 @@
 import React from "react";
 
-const StatisticsCards = () => {
+const StatisticsCards = ({ statistics }) => {
   return (
     <div className="new-patients main_container">
       <div className="row">
@@ -12,8 +12,8 @@ const StatisticsCards = () => {
                   <i className="fas fa-calendar-check fa-2x"></i>
                 </span>
                 <div className="media-body">
-                  <span className="text-white">Earnings</span>
-                  <h3 className="mb-0 text-white">7699</h3>
+                  <span className="text-white">Fullfilments</span>
+                  <h3 className="mb-0 text-white">{statistics?.totalPharmacies}</h3>
                 </div>
               </div>
             </div>
@@ -27,8 +27,8 @@ const StatisticsCards = () => {
                   <i className="fas fa-user-nurse fa-2x"></i>
                 </span>
                 <div className="media-body">
-                  <span className="text-white">Patients</span>
-                  <h3 className="mb-0 text-white">400</h3>
+                  <span className="text-white">Approved patients</span>
+                  <h3 className="mb-0 text-white">{statistics?.totalPatients}</h3>
                 </div>
               </div>
             </div>
@@ -42,8 +42,8 @@ const StatisticsCards = () => {
                   <i className="fas fa-user-plus fa-2x"></i>
                 </span>
                 <div className="media-body">
-                  <span className="text-white">Appointments</span>
-                  <h3 className="mb-0 text-white">1360</h3>
+                  <span className="text-white">Week summery</span>
+                  <h3 className="mb-0 text-white">{statistics?.totalPrescriptions}</h3>
                 </div>
               </div>
             </div>
@@ -57,8 +57,10 @@ const StatisticsCards = () => {
                   <i className="fas fa-database fa-2x"></i>
                 </span>
                 <div className="media-body">
-                  <span className="text-white">Total Revenue</span>
-                  <h3 className="mb-0 text-white">$6500</h3>
+                  <span className="text-white">Total Investment</span>
+                  <h3 className="mb-0 text-white">
+                    {statistics?.totalInvestment} <span style={{ fontSize: 12 }}>PKR</span>
+                  </h3>
                 </div>
               </div>
             </div>

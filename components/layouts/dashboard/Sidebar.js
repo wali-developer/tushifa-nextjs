@@ -35,7 +35,6 @@ const Sidebar = () => {
       subMenu: [
         { label: "New Prescription", path: "/new-prescription" },
         { label: "All Prescriptions", path: "/all-prescription" },
-        { label: "Prescription requests", path: "/prescription-requests" },
       ],
     },
     { label: "Settings", path: "settings", icon: "fas fa-th-large" },

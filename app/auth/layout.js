@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 
 const AuthLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
-  if (session) redirect("/dashboard");
+  if (session?.user?.role == "admin") redirect("/dashboard");
+  else redirect("/dashboard-pharmcist");
 
   return <>{children}</>;
 };

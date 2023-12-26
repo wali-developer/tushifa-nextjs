@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// MONGODB_URI=mongodb://localhost:27017/tushifa_db
 
 const url = process.env?.MONGODB_URI;
 let connection;

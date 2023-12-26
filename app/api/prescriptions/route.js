@@ -10,6 +10,19 @@ export const POST = async (req) => {
 
     const photocopy = data.get("photocopy");
     const patient = data.get("patient");
+
+    const checkExistPatient = await PrescriptionModel.find({ patient });
+
+    if (checkExistPatient.length > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: `There is a prescription already assigned to this patient`,
+        },
+        { status: 422 }
+      );
+    }
+
     const prescriptionPhotocopy = await saveImage(photocopy);
 
     await startDbConnection();
@@ -35,7 +48,7 @@ export const POST = async (req) => {
   }
 };
 
-// Get all patients
+// Get all prescriptions
 export const GET = async (req) => {
   try {
     await startDbConnection();

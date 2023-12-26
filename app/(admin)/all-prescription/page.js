@@ -1,12 +1,16 @@
 "use client";
 
+import EditPatientModal from "@/components/admin/patients/EditPatientModal";
+import EditPrescriptionModal from "@/components/admin/prescriptions/EditPrescriptionModal";
 import DataTableBase from "@/components/common/DataTable";
+import DeleteConfirmationModal from "@/components/common/DeleteConfirmationModal";
 import Loader from "@/components/common/Loader";
 import API from "@/utils/api";
 import getHeader from "@/utils/getHeader";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AllPrescription = () => {
   const header = getHeader();
@@ -64,7 +68,19 @@ const AllPrescription = () => {
     },
     {
       name: "Date",
-      selector: (row) => row.createdAt,
+      selector: (row) => new Date(row.createdAt).toLocaleDateString(),
+      sortable: true,
+    },
+    {
+      name: "Status",
+      // selector: (row) => row.approved,
+      cell: (row) => {
+        return (
+          <span style={{ color: row?.approved ? "yellow" : "red" }}>
+            {row?.approved ? "Approved" : "Not approved"}
+          </span>
+        );
+      },
       sortable: true,
     },
     {
@@ -73,14 +89,7 @@ const AllPrescription = () => {
         <div className="table-action d-flex align-items-center">
           <button
             data-bs-toggle="modal"
-            // data-bs-target="#viewModal"
-            onClick={() => setSelected(row)}
-          >
-            <i class="fas fa-eye"></i>
-          </button>
-          <button
-            data-bs-toggle="modal"
-            // data-bs-target="#editModal"
+            data-bs-target="#editModal"
             onClick={() => setSelected(row)}
           >
             <i className="fas fa-edit"></i>
@@ -88,7 +97,7 @@ const AllPrescription = () => {
           <button
             type="button"
             data-bs-toggle="modal"
-            // data-bs-target="#deleteConfimation"
+            data-bs-target="#deleteConfimation"
             onClick={() => setSelected(row)}
           >
             <i className="fas fa-trash"></i>
@@ -97,6 +106,7 @@ const AllPrescription = () => {
       ),
     },
   ];
+
   return (
     <>
       <div className="content-body">
@@ -121,7 +131,7 @@ const AllPrescription = () => {
                       </div>
                     </div>
                   </div>
-                  <DataTableBase columns={columns} data={prescriptions} />
+                  <DataTableBase columns={columns} data={prescriptions} isPrescription={true} />
                 </div>
               </div>
             </div>
@@ -129,6 +139,19 @@ const AllPrescription = () => {
         </div>
       </div>
       {loading && <Loader />}
+      <DeleteConfirmationModal
+        modalId="deleteConfimation"
+        onConfirm={() => handleDelete()}
+        loading={deleting}
+      />
+      <EditPrescriptionModal
+        modalId="editModal"
+        data={selected}
+        callback={() => {
+          setSelected({});
+          loadPrescriptionsData();
+        }}
+      />
     </>
   );
 };

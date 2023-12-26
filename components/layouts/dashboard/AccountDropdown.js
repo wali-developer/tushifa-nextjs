@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
-const AccountDropdown = () => {
+const AccountDropdown = ({ link }) => {
   const { data, status } = useSession();
   const user = data?.user;
   return (
@@ -20,7 +20,7 @@ const AccountDropdown = () => {
           </Link>
           <div className="account-dropdown-form dropdown-container">
             <div className="form-content">
-              <Link href="doctor-settings.html">
+              <Link href={link ? link : "/settings"}>
                 <i className="far fa-user"></i>
                 <span className="ml-2">Profile</span>
               </Link>

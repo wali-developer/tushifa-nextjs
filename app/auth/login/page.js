@@ -4,10 +4,12 @@ import InputField from "@/components/form/InputField";
 import PasswordField from "@/components/form/PasswordField";
 import Link from "next/link";
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const session = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -37,12 +39,16 @@ const Login = () => {
     });
     setLoading(false);
 
-    if (res?.error) return alert(res?.error);
+    if (res?.error) return toast.error(res?.error);
     setUserInfo({
       email: "",
       password: "",
     });
-    router.replace("/dashboard");
+    if (session.data?.user?.role == "admin") {
+      router.replace("/dashboard");
+    } else {
+      router.replace("/pharmcist/dashboard");
+    }
   };
 
   return (

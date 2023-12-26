@@ -25,18 +25,7 @@ export default async function DashboardLayout({ children }) {
       {/* <!-- popper js --> */}
       <Script src="assets/plugins/popper/popper.min.js" />
 
-      {/* <!-- Bootstrap --> */}
-      {/* <Script src="assets/plugins/bootstrap/js/bootstrap.js" /> */}
-
-      {/* Moment */}
-      <Script src="assets/plugins/moment/moment.min.js" />
-
-      {/*  Datatable */}
-      <Script src="assets/plugins/datatables/jquery.dataTables.min.js" />
-      <Script src="assets/js/init-tdatatable.js" />
-
       {/* Main Custom JQuery */}
-      <Script src="assets/js/toggleFullScreen.js" />
       <Script src="assets/js/main.js" />
     </>
   );

@@ -13,11 +13,11 @@ export const GET = async (req) => {
     const approvedPrescriptions = await PrescriptionModel.find({
       approved: true,
       pharmacyId: pharmacyId,
-    });
+    }).populate("patient");
 
     return NextResponse.json({
       success: true,
-      prescription: approvedPrescriptions[0],
+      prescriptions: approvedPrescriptions,
     });
   } catch (error) {
     return NextResponse.json(

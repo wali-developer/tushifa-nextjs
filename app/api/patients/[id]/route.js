@@ -136,7 +136,6 @@ export const DELETE = async (req, { params }) => {
 const deleteImage = async (path) => {
   try {
     await fs.unlink(path);
-    console.log(`Deleted image at path: ${path}`);
   } catch (error) {
     console.error(`Error deleting image at path ${path}:`, error);
     throw error;
