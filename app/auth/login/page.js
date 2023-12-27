@@ -51,6 +51,7 @@ const Login = () => {
       setRedirecting(true);
 
       const { data } = await API.get("/auth/session");
+      console.log("Sessions", data?.user);
 
       if (data.user) {
         if (data?.user?.role == "admin") {
