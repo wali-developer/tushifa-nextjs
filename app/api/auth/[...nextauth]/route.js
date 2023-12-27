@@ -26,6 +26,7 @@ export const authOptions = {
           email: user.name,
           role: user.role,
           id: user._id,
+          pharmacyId: user.role === "pharmacist" ? user.pharmacyId : undefined,
         };
       },
     }),
@@ -35,6 +36,7 @@ export const authOptions = {
       if (params.user?.role) {
         params.token.role = params.user.role;
         params.token.id = params.user.id;
+        params.token.pharmacyId = params.user.pharmacyId;
       }
       return params.token;
     },
@@ -42,6 +44,7 @@ export const authOptions = {
       if (session.user) {
         session.user.id = token.id;
         session.user.role = token.role;
+        session.user.pharmacyId = token.pharmacyId;
       }
       return session;
     },

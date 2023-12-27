@@ -5,8 +5,10 @@ import { redirect } from "next/navigation";
 
 const AuthLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
-  if (session?.user?.role == "admin") redirect("/dashboard");
-  else redirect("/dashboard-pharmcist");
+  if (session) {
+    if (session?.user?.role == "admin") redirect("/dashboard");
+    else redirect("/dashboard-pharmacy");
+  }
 
   return <>{children}</>;
 };

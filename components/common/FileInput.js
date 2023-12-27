@@ -40,7 +40,7 @@ const FileInput = ({ label, onChange, file }) => {
               id="file-ip-1-preview"
               src={preview}
               alt="img"
-              style={{ display: preview ? "block" : "none" }}
+              style={{ display: preview ? "block" : "none", objectFit: "cotain" }}
             />
           </div>
         )}

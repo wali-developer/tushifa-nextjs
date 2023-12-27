@@ -1,14 +1,19 @@
 import startDbConnection from "@/libs/db";
 import FulfillmentModel from "@/models/fulfillmentModel";
 import PrescriptionModel from "@/models/prescriptionModel";
+import saveImage from "@/utils/saveImage";
 import { NextResponse } from "next/server";
 
 export const POST = async (req, { params }) => {
   const pharmacyId = params.id;
   try {
-    await startDbConnection();
+    const data = await req.formData();
 
-    const { patientId, prescriptions, totalAmount, receiptPicture } = await req.json();
+    const patientId = data.get("patientId");
+    const totalAmount = data.get("totalAmount");
+    const prescriptionsString = data.get("prescriptions[]");
+    const prescriptions = JSON.parse(prescriptionsString);
+    const receiptPicture = data.get("receiptPicture");
 
     const checkPrescriptionStatus = await PrescriptionModel.find({
       approved: true,
@@ -29,11 +34,11 @@ export const POST = async (req, { params }) => {
     }
 
     // if prescription is already fulfilled by a pharmacy
-    else if (alreadyFulfilledPrescription) {
+    else if (alreadyFulfilledPrescription.length > 0) {
       return NextResponse.json(
         {
           success: false,
-          message: "This patient prescriptions are already fulfilled",
+          message: "The patient prescriptions are already fulfilled",
         },
         { status: 422 }
       );
@@ -50,12 +55,15 @@ export const POST = async (req, { params }) => {
       );
     }
 
+    await startDbConnection();
+    const receipt = await saveImage(receiptPicture);
+
     const fulfillment = new FulfillmentModel({
       pharmacyId,
       patientId,
       prescriptions,
       totalAmount,
-      receiptPicture,
+      receipt,
     });
 
     await fulfillment.save();

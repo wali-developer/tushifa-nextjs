@@ -18,7 +18,7 @@ const ViewPrescriptionsModal = ({ modalId, data, callback, action = true }) => {
       setLoading(true);
       const response = await API.put(
         `/prescriptions/${data?._id}/approve`,
-        { pharmacyId: user?.id },
+        { pharmacyId: user?.pharmacyId },
         header
       );
       if (response?.data?.success == true) {

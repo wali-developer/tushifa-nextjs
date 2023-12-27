@@ -2,21 +2,16 @@
 
 import DataTableBase from "@/components/common/DataTable";
 import Loader from "@/components/common/Loader";
-import DeleteConfirmationModal from "@/components/common/DeleteConfirmationModal";
 import API from "@/utils/api";
 import getHeader from "@/utils/getHeader";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Link from "next/link";
-import EditPatientModal from "@/components/admin/patients/EditPatientModal";
-import ViewPatientModal from "@/components/admin/patients/ViewPatientModal";
 
 const AllPatients = () => {
   const header = getHeader();
   const [patientsList, setPatientsList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-  const [selected, setSelected] = useState({});
 
   useEffect(() => {
     loadPatientsData();
@@ -32,24 +27,6 @@ const AllPatients = () => {
       console.log(error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      setDeleting(true);
-      const { data } = await API.delete(`/patients/${selected._id}`, header);
-      if (data?.success) {
-        toast.success(data?.message);
-        setSelected({});
-        loadPatientsData();
-      } else {
-        toast.error(data?.error);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setDeleting(false);
     }
   };
 
@@ -89,13 +66,9 @@ const AllPatients = () => {
       name: "Action",
       cell: (row) => (
         <div className="table-action d-flex align-items-center">
-          <button
-            data-bs-toggle="modal"
-            data-bs-target="#viewModal"
-            onClick={() => setSelected(row)}
-          >
+          <Link href={`/patient-detials?id=${row?._id}`}>
             <i class="fas fa-eye"></i>
-          </button>
+          </Link>
         </div>
       ),
     },
@@ -123,13 +96,6 @@ const AllPatients = () => {
           </div>
         </div>
       </div>
-      <DeleteConfirmationModal
-        modalId="deleteConfimation"
-        onConfirm={() => handleDelete()}
-        loading={deleting}
-      />
-      <EditPatientModal modalId="editModal" data={selected} callback={() => loadPatientsData()} />
-      <ViewPatientModal modalId="viewModal" data={selected} />
       {loading && <Loader />}
     </>
   );

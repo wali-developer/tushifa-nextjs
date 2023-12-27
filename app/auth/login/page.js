@@ -47,7 +47,7 @@ const Login = () => {
     if (session.data?.user?.role == "admin") {
       router.replace("/dashboard");
     } else {
-      router.replace("/pharmcist/dashboard");
+      router.replace("/dashboard-pharmacy");
     }
   };
 
