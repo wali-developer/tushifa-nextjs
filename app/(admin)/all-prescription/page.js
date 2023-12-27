@@ -76,7 +76,7 @@ const AllPrescription = () => {
       // selector: (row) => row.approved,
       cell: (row) => {
         return (
-          <span style={{ color: row?.approved ? "yellow" : "red" }}>
+          <span style={{ color: row?.approved ? "green" : "red" }}>
             {row?.approved ? "Approved" : "Not approved"}
           </span>
         );

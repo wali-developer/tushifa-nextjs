@@ -24,7 +24,10 @@ const AllPrescription = () => {
   const loadPrescriptionsData = async () => {
     try {
       setLoading(true);
-      const { data } = await API.get(`/prescriptions/approved?pharmacy_id=${user?.id}`, header);
+      const { data } = await API.get(
+        `/prescriptions/approved?pharmacy_id=${user.pharmacyId}`,
+        header
+      );
       if (Array.isArray(data.prescriptions)) {
         setPrescriptions(data.prescriptions);
       }
