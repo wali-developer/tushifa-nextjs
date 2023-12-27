@@ -52,32 +52,6 @@ const AboutTestimonialsBlock = () => {
               </p>
               <i className="icofont-quote-right"></i>
             </div>
-
-            <div className="testimonial-block">
-              <div className="client-info">
-                <h4>Nice Environment!</h4>
-                <span>Partho Sarothi</span>
-              </div>
-              <p>
-                They provide great service facilty consectetur adipisicing elit. Itaque rem,
-                praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit
-                placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-              </p>
-              <i className="icofont-quote-right"></i>
-            </div>
-
-            <div className="testimonial-block">
-              <div className="client-info">
-                <h4>Modern Service!</h4>
-                <span>Kolis Mullar</span>
-              </div>
-              <p>
-                They provide great service facilty consectetur adipisicing elit. Itaque rem,
-                praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit
-                placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-              </p>
-              <i className="icofont-quote-right"></i>
-            </div>
           </div>
         </div>
       </div>

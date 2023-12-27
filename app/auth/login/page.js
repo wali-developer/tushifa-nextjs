@@ -44,10 +44,12 @@ const Login = () => {
       email: "",
       password: "",
     });
-    if (session.data?.user?.role == "admin") {
-      router.replace("/dashboard");
-    } else {
-      router.replace("/dashboard-pharmacy");
+    if (session.data?.user?.role) {
+      if (session.data?.user?.role == "admin") {
+        router.replace("/dashboard");
+      } else {
+        router.replace("/dashboard-pharmacy");
+      }
     }
   };
 
