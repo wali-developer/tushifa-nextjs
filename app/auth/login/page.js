@@ -4,14 +4,16 @@ import InputField from "@/components/form/InputField";
 import PasswordField from "@/components/form/PasswordField";
 import Link from "next/link";
 import React, { useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import ButtonLoader from "@/components/common/ButtonLoader";
+import API from "@/utils/api";
 
 const Login = () => {
-  const session = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -28,28 +30,38 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+    setRedirecting(false);
     e.preventDefault();
     const { email, password } = userInfo;
 
     setLoading(true);
-    const res = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-    setLoading(false);
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      setLoading(false);
 
-    if (res?.error) return toast.error(res?.error);
-    setUserInfo({
-      email: "",
-      password: "",
-    });
-    if (session.data?.user?.role) {
-      if (session.data?.user?.role == "admin") {
-        router.replace("/dashboard");
-      } else {
-        router.replace("/dashboard-pharmacy");
+      if (res?.error) return toast.error(res?.error);
+      setUserInfo({
+        email: "",
+        password: "",
+      });
+      setRedirecting(true);
+
+      const { data } = await API.get("/auth/session");
+
+      if (data.user) {
+        if (data?.user?.role == "admin") {
+          router.replace("/dashboard");
+        } else {
+          router.replace("/dashboard-pharmacy");
+        }
       }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
   };
 
@@ -87,11 +99,8 @@ const Login = () => {
                 <div className="form-group mb-0">
                   <div className="checkbox p-0">
                     <input id="checkbox1" type="checkbox" />
-                    <label className="text-muted" for="checkbox1">
-                      Remember password
-                    </label>
                   </div>
-                  <Link className="link text-primary" href="/auth/forgot-password">
+                  <Link className="link text-primary" href="#">
                     Forgot password?
                   </Link>
                   <div className="mt-3">
@@ -104,16 +113,16 @@ const Login = () => {
                         opacity: loading ? 0.5 : 1,
                       }}
                     >
-                      Sign in
+                      {loading ? <ButtonLoader /> : redirecting ? "Redirecting..." : "Sign in"}
                     </button>
                   </div>
                 </div>
-                <p className="mt-4 mb-0">
+                {/* <p className="mt-4 mb-0">
                   {"Don't"} have account?{" "}
                   <Link className="ms-2 text-primary text-center" href="/auth/register">
                     Create Account
                   </Link>
-                </p>
+                </p> */}
               </form>
             </div>
           </div>
