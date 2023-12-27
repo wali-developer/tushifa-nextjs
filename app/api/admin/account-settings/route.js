@@ -2,12 +2,6 @@ import startDbConnection from "@/libs/db";
 import UserModal from "@/models/userModel";
 import { NextResponse } from "next/server";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export const PUT = async (req) => {
   try {
     await startDbConnection();
