@@ -2,7 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 const prescriptionSchema = new Schema(
   {
-    photocopy: { type: String, required: true },
+    photocopy: String,
     approved: Boolean,
     patient: { type: Schema.Types.ObjectId, ref: "Patient" },
     pharmacyId: { type: Schema.Types.ObjectId, ref: "Pharmacy" },

@@ -67,6 +67,9 @@ const NewPrescription = () => {
       }
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.message) {
+        toast.error(error?.response?.data?.message);
+      }
     } finally {
       setLoading(false);
     }

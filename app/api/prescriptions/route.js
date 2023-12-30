@@ -23,7 +23,11 @@ export const POST = async (req) => {
       );
     }
 
-    const prescriptionPhotocopy = await saveImage(photocopy);
+    let prescriptionPhotocopy;
+
+    if (photocopy) {
+      prescriptionPhotocopy = await saveImage(photocopy);
+    }
 
     await startDbConnection();
 

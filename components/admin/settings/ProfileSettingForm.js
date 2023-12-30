@@ -46,7 +46,7 @@ const ProfileSettingForm = ({ user }) => {
 
     try {
       setLoading(true);
-      const { data } = await API.put(`/admin/account-settings`, payload, header);
+      const { data } = await API.put(`/pharmacy-account-settings`, payload, header);
       if (data?.success == true) {
         toast.success(data?.message);
       } else if (data?.success == false) {

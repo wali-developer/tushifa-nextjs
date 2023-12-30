@@ -159,7 +159,7 @@ const AllPharmacies = () => {
         data={selected}
         callback={() => loadPharmaciesData()}
       />
-      <ViewPharmacyModal modalId="viewModal" data={selected} />
+      <ViewPharmacyModal modalId="viewModal" pharmacyId={selected?._id} />
     </>
   );
 };

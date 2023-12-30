@@ -19,8 +19,11 @@ export const POST = async (req) => {
     const attendantName = data.get("attendantName");
     const attendantContact = data.get("attendantContact");
     const attendant_relation_to_patient = data.get("attendant_relation_to_patient");
+    let cnicPhotocopy;
 
-    const cnicPhotocopy = await saveImage(photocopy);
+    if (photocopy) {
+      cnicPhotocopy = await saveImage(photocopy);
+    }
 
     await startDbConnection();
 

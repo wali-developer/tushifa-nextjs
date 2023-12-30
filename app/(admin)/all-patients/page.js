@@ -89,13 +89,11 @@ const AllPatients = () => {
       name: "Action",
       cell: (row) => (
         <div className="table-action d-flex align-items-center">
-          <button
-            data-bs-toggle="modal"
-            data-bs-target="#viewModal"
-            onClick={() => setSelected(row)}
-          >
-            <i class="fas fa-eye"></i>
-          </button>
+          <Link href={`/patient-detials?id=${row?._id}`}>
+            <button>
+              <i class="fas fa-eye"></i>
+            </button>
+          </Link>
           <button
             data-bs-toggle="modal"
             data-bs-target="#editModal"

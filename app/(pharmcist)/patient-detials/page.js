@@ -25,7 +25,6 @@ const PatientDetails = async ({ searchParams }) => {
   const presResponse = await getPatientPrescriptionDetails(searchParams.id);
   const prescription = presResponse?.prescription;
   const pharmacy = prescription?.pharmacyId;
-  console.log(prescription);
 
   return (
     <>
@@ -154,7 +153,9 @@ const PatientDetails = async ({ searchParams }) => {
                 </div>
               </div>
             )}
-            {!prescription?.fulfillment && <PrescriptionFulfillment patientId={patient?._id} />}
+            {pharmacy && !prescription?.fulfillment && (
+              <PrescriptionFulfillment patientId={patient?._id} />
+            )}
           </div>
         </div>
       </div>

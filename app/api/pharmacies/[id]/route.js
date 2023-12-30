@@ -1,5 +1,7 @@
 import startDbConnection from "@/libs/db";
+import FulfillmentModel from "@/models/fulfillmentModel";
 import PharmacyModel from "@/models/pharmacyModel";
+import PrescriptionModel from "@/models/prescriptionModel";
 import { NextResponse } from "next/server";
 
 // Get pharmacy by id
@@ -10,6 +12,17 @@ export const GET = async (req, { params }) => {
     await startDbConnection();
 
     const pharmacy = await PharmacyModel.findById({ _id: id });
+    const approvedPrescriptions = await PrescriptionModel.find({
+      approved: true,
+      pharmacyId: id,
+    });
+    const pharmacyFulfilments = await FulfillmentModel.find({
+      pharmacyId: id,
+    });
+    const totalFufilments = pharmacyFulfilments.reduce(
+      (total, fulfillment) => total + fulfillment.totalAmount,
+      0
+    );
 
     if (!pharmacy) {
       return NextResponse.json({ success: false, error: "Pharmacy not found" }, { status: 404 });
@@ -17,7 +30,11 @@ export const GET = async (req, { params }) => {
 
     return NextResponse.json({
       success: true,
-      pharmacy: pharmacy,
+      pharmacy: {
+        ...pharmacy.toObject(),
+        approvedPrescriptions: approvedPrescriptions,
+        pharmacyFulfilments: totalFufilments,
+      },
     });
   } catch (error) {
     return NextResponse.json(
